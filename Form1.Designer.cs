@@ -6,9 +6,13 @@ namespace QuanLyResponsive
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
-        private ListBox lstMenu, lstSelected;
-        private Button btnAdd, btnRemove;
-        private Label lblMenu, lblSelected, lblTotal;
+        private MaskedTextBox mtxtPhone;
+        private DateTimePicker dtpBirthDate;
+        private ComboBox cboCourse;
+        private RadioButton rdoMale, rdoFemale;
+        private CheckBox chkConfirm;
+        private Button btnRegister;
+        private Label lblPhone, lblBirth, lblGender, lblCourse;
 
         protected override void Dispose(bool disposing)
         {
@@ -21,60 +25,89 @@ namespace QuanLyResponsive
 
         private void InitializeComponent()
         {
-            this.lstMenu = new ListBox();
-            this.lstSelected = new ListBox();
-            this.btnAdd = new Button();
-            this.btnRemove = new Button();
-            this.lblMenu = new Label();
-            this.lblSelected = new Label();
-            this.lblTotal = new Label();
+            this.lblPhone = new Label();
+            this.lblBirth = new Label();
+            this.lblGender = new Label();
+            this.lblCourse = new Label();
+            this.mtxtPhone = new MaskedTextBox();
+            this.dtpBirthDate = new DateTimePicker();
+            this.cboCourse = new ComboBox();
+            this.rdoMale = new RadioButton();
+            this.rdoFemale = new RadioButton();
+            this.chkConfirm = new CheckBox();
+            this.btnRegister = new Button();
             this.SuspendLayout();
 
-            this.lblMenu.Text = "Thực đơn";
-            this.lblMenu.Location = new Point(20, 15);
-            this.lblMenu.AutoSize = true;
+            // SĐT Mask
+            this.lblPhone.Text = "Số điện thoại:";
+            this.lblPhone.Location = new Point(20, 20);
+            this.lblPhone.AutoSize = true;
 
-            this.lstMenu.Location = new Point(20, 40);
-            this.lstMenu.Size = new Size(150, 160);
+            this.mtxtPhone.Mask = "(000) 000-0000";
+            this.mtxtPhone.Location = new Point(120, 17);
+            this.mtxtPhone.Size = new Size(200, 23);
 
-            this.btnAdd.Text = ">";
-            this.btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            this.btnAdd.Location = new Point(185, 70);
-            this.btnAdd.Size = new Size(50, 35);
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // Ngày sinh
+            this.lblBirth.Text = "Ngày sinh:";
+            this.lblBirth.Location = new Point(20, 60);
+            this.lblBirth.AutoSize = true;
 
-            this.btnRemove.Text = "<";
-            this.btnRemove.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            this.btnRemove.Location = new Point(185, 120);
-            this.btnRemove.Size = new Size(50, 35);
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.dtpBirthDate.Location = new Point(120, 57);
+            this.dtpBirthDate.Size = new Size(200, 23);
 
-            this.lblSelected.Text = "Món đã chọn";
-            this.lblSelected.Location = new Point(250, 15);
-            this.lblSelected.AutoSize = true;
+            // Giới tính
+            this.lblGender.Text = "Giới tính:";
+            this.lblGender.Location = new Point(20, 100);
+            this.lblGender.AutoSize = true;
 
-            this.lstSelected.Location = new Point(250, 40);
-            this.lstSelected.Size = new Size(150, 160);
+            this.rdoMale.Text = "Nam";
+            this.rdoMale.Location = new Point(120, 98);
+            this.rdoMale.Size = new Size(60, 20);
+            this.rdoMale.Checked = true;
 
-            this.lblTotal.Text = "Tổng tiền: 0 VNĐ";
-            this.lblTotal.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.lblTotal.ForeColor = Color.Red;
-            this.lblTotal.Location = new Point(20, 215);
-            this.lblTotal.AutoSize = true;
+            this.rdoFemale.Text = "Nữ";
+            this.rdoFemale.Location = new Point(190, 98);
+            this.rdoFemale.Size = new Size(60, 20);
 
-            this.Controls.Add(this.lblMenu);
-            this.Controls.Add(this.lstMenu);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.lblSelected);
-            this.Controls.Add(this.lstSelected);
-            this.Controls.Add(this.lblTotal);
+            // Khóa học
+            this.lblCourse.Text = "Khóa học:";
+            this.lblCourse.Location = new Point(20, 140);
+            this.lblCourse.AutoSize = true;
 
-            this.ClientSize = new Size(425, 255);
+            this.cboCourse.Location = new Point(120, 137);
+            this.cboCourse.Size = new Size(200, 23);
+            this.cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // Cam kết
+            this.chkConfirm.Text = "Đồng ý với các điều khoản đăng ký";
+            this.chkConfirm.Location = new Point(120, 175);
+            this.chkConfirm.AutoSize = true;
+
+            // Nút Đăng ký
+            this.btnRegister.Text = "Đăng ký";
+            this.btnRegister.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            this.btnRegister.Location = new Point(120, 215);
+            this.btnRegister.Size = new Size(100, 35);
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+
+            // Controls
+            this.Controls.Add(this.lblPhone);
+            this.Controls.Add(this.mtxtPhone);
+            this.Controls.Add(this.lblBirth);
+            this.Controls.Add(this.dtpBirthDate);
+            this.Controls.Add(this.lblGender);
+            this.Controls.Add(this.rdoMale);
+            this.Controls.Add(this.rdoFemale);
+            this.Controls.Add(this.lblCourse);
+            this.Controls.Add(this.cboCourse);
+            this.Controls.Add(this.chkConfirm);
+            this.Controls.Add(this.btnRegister);
+
+            this.ClientSize = new Size(350, 270);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Quan Ly Thuc Don";
+            this.Text = "Form Dang Ky";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
