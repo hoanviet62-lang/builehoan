@@ -6,13 +6,11 @@ namespace QuanLyResponsive
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
-        private MaskedTextBox mtxtPhone;
-        private DateTimePicker dtpBirthDate;
-        private ComboBox cboCourse;
-        private RadioButton rdoMale, rdoFemale;
-        private CheckBox chkConfirm;
-        private Button btnRegister;
-        private Label lblPhone, lblBirth, lblGender, lblCourse;
+        private TextBox txtUsername, txtPassword;
+        private CheckBox chkShowPassword;
+        private Button btnLogin, btnExit;
+        private Label lblUsername, lblPassword, lblTitle;
+        private ErrorProvider errorProvider1;
 
         protected override void Dispose(bool disposing)
         {
@@ -25,90 +23,73 @@ namespace QuanLyResponsive
 
         private void InitializeComponent()
         {
-            this.lblPhone = new Label();
-            this.lblBirth = new Label();
-            this.lblGender = new Label();
-            this.lblCourse = new Label();
-            this.mtxtPhone = new MaskedTextBox();
-            this.dtpBirthDate = new DateTimePicker();
-            this.cboCourse = new ComboBox();
-            this.rdoMale = new RadioButton();
-            this.rdoFemale = new RadioButton();
-            this.chkConfirm = new CheckBox();
-            this.btnRegister = new Button();
+            this.components = new System.ComponentModel.Container();
+            this.lblTitle = new Label();
+            this.lblUsername = new Label();
+            this.lblPassword = new Label();
+            this.txtUsername = new TextBox();
+            this.txtPassword = new TextBox();
+            this.chkShowPassword = new CheckBox();
+            this.btnLogin = new Button();
+            this.btnExit = new Button();
+            this.errorProvider1 = new ErrorProvider(this.components);
+
             this.SuspendLayout();
 
-            // SĐT Mask
-            this.lblPhone.Text = "Số điện thoại:";
-            this.lblPhone.Location = new Point(20, 20);
-            this.lblPhone.AutoSize = true;
+            this.lblTitle.Text = "ĐĂNG NHẬP HỆ THỐNG";
+            this.lblTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            this.lblTitle.ForeColor = Color.DarkBlue;
+            this.lblTitle.Location = new Point(50, 15);
+            this.lblTitle.AutoSize = true;
 
-            this.mtxtPhone.Mask = "(000) 000-0000";
-            this.mtxtPhone.Location = new Point(120, 17);
-            this.mtxtPhone.Size = new Size(200, 23);
+            this.lblUsername.Text = "Tên đăng nhập:";
+            this.lblUsername.Location = new Point(20, 60);
+            this.lblUsername.AutoSize = true;
 
-            // Ngày sinh
-            this.lblBirth.Text = "Ngày sinh:";
-            this.lblBirth.Location = new Point(20, 60);
-            this.lblBirth.AutoSize = true;
+            this.txtUsername.Location = new Point(120, 57);
+            this.txtUsername.Size = new Size(180, 23);
 
-            this.dtpBirthDate.Location = new Point(120, 57);
-            this.dtpBirthDate.Size = new Size(200, 23);
+            this.lblPassword.Text = "Mật khẩu:";
+            this.lblPassword.Location = new Point(20, 100);
+            this.lblPassword.AutoSize = true;
 
-            // Giới tính
-            this.lblGender.Text = "Giới tính:";
-            this.lblGender.Location = new Point(20, 100);
-            this.lblGender.AutoSize = true;
+            this.txtPassword.Location = new Point(120, 97);
+            this.txtPassword.Size = new Size(180, 23);
+            this.txtPassword.UseSystemPasswordChar = true;
 
-            this.rdoMale.Text = "Nam";
-            this.rdoMale.Location = new Point(120, 98);
-            this.rdoMale.Size = new Size(60, 20);
-            this.rdoMale.Checked = true;
+            this.chkShowPassword.Text = "Hiện mật khẩu";
+            this.chkShowPassword.Location = new Point(120, 130);
+            this.chkShowPassword.AutoSize = true;
+            this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
 
-            this.rdoFemale.Text = "Nữ";
-            this.rdoFemale.Location = new Point(190, 98);
-            this.rdoFemale.Size = new Size(60, 20);
+            this.btnLogin.Text = "Đăng nhập";
+            this.btnLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            this.btnLogin.Location = new Point(120, 165);
+            this.btnLogin.Size = new Size(85, 30);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
 
-            // Khóa học
-            this.lblCourse.Text = "Khóa học:";
-            this.lblCourse.Location = new Point(20, 140);
-            this.lblCourse.AutoSize = true;
+            this.btnExit.Text = "Thoát";
+            this.btnExit.Location = new Point(215, 165);
+            this.btnExit.Size = new Size(85, 30);
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
 
-            this.cboCourse.Location = new Point(120, 137);
-            this.cboCourse.Size = new Size(200, 23);
-            this.cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.lblUsername);
+            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.chkShowPassword);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnExit);
 
-            // Cam kết
-            this.chkConfirm.Text = "Đồng ý với các điều khoản đăng ký";
-            this.chkConfirm.Location = new Point(120, 175);
-            this.chkConfirm.AutoSize = true;
+            this.AcceptButton = this.btnLogin;
+            this.CancelButton = this.btnExit;
 
-            // Nút Đăng ký
-            this.btnRegister.Text = "Đăng ký";
-            this.btnRegister.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            this.btnRegister.Location = new Point(120, 215);
-            this.btnRegister.Size = new Size(100, 35);
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-
-            // Controls
-            this.Controls.Add(this.lblPhone);
-            this.Controls.Add(this.mtxtPhone);
-            this.Controls.Add(this.lblBirth);
-            this.Controls.Add(this.dtpBirthDate);
-            this.Controls.Add(this.lblGender);
-            this.Controls.Add(this.rdoMale);
-            this.Controls.Add(this.rdoFemale);
-            this.Controls.Add(this.lblCourse);
-            this.Controls.Add(this.cboCourse);
-            this.Controls.Add(this.chkConfirm);
-            this.Controls.Add(this.btnRegister);
-
-            this.ClientSize = new Size(350, 270);
+            this.ClientSize = new Size(330, 215);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Form Dang Ky";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Form Dang Nhap";
             this.ResumeLayout(false);
             this.PerformLayout();
         }

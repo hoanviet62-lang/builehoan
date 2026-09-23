@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace QuanLyResponsive
@@ -11,47 +10,40 @@ namespace QuanLyResponsive
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
         {
-            dtpBirthDate.Format = DateTimePickerFormat.Custom;
-            dtpBirthDate.CustomFormat = "dd/MM/yyyy";
+            txtPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
+        }
 
-            // Nạp danh sách Khóa học với DisplayMember và ValueMember
-            var courses = new List<Course>
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                new Course { Id = "C01", Name = "Lập trình C# WinForms" },
-                new Course { Id = "C02", Name = "Thiết kế Web Responsive" },
-                new Course { Id = "C03", Name = "Cơ sở dữ liệu SQL Server" }
-            };
+                errorProvider1.SetError(txtUsername, "Vui lòng nhập tên đăng nhập!");
+                isValid = false;
+            }
 
-            cboCourse.DataSource = courses;
-            cboCourse.DisplayMember = "Name";
-            cboCourse.ValueMember = "Id";
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                errorProvider1.SetError(txtPassword, "Vui lòng nhập mật khẩu!");
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                MessageBox.Show($"Đăng nhập thành công!\nTài khoản: {txtUsername.Text}", "Thông báo");
+            }
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
-            string phone = mtxtPhone.Text;
-            string birthDate = dtpBirthDate.Value.ToString("dd/MM/yyyy");
-            string course = cboCourse.Text;
-            string gender = rdoMale.Checked ? "Nam" : (rdoFemale.Checked ? "Nữ" : "Chưa chọn");
-            
-            string genderDetail = rdoMale.Checked ? "Nam" : "Nữ";
-            string confirm = chkConfirm.Checked ? "Đã đồng ý điều khoản" : "Chưa đồng ý điều khoản";
-
-            string info = $"SĐT: {phone}\n" +
-                          $"Ngày sinh: {birthDate}\n" +
-                          $"Giới tính: {genderDetail}\n" +
-                          $"Khóa học: {course} (Mã: {cboCourse.SelectedValue})\n" +
-                          $"Trạng thái: {confirm}";
-
-            MessageBox.Show(info, "Thông Tin Đăng Ký", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (MessageBox.Show("Bạn có muốn thoát không?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
-    }
-
-    public class Course
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
     }
 }
