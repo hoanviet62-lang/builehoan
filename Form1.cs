@@ -5,70 +5,48 @@ namespace QuanLyResponsive
 {
     public partial class Form1 : Form
     {
-        private double operand1 = 0;
-        private string pendingOperation = "";
-        private bool isNewNumber = true;
-
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void NumberButton_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            lstMenu.Items.Add("Hamburger - 50k");
+            lstMenu.Items.Add("Pizza - 120k");
+            lstMenu.Items.Add("Gá Rán - 35k");
+            lstMenu.Items.Add("Pepsi - 15k");
+            TinhTongTien();
+        }
 
-            if (isNewNumber || txtDisplay.Text == "0")
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (lstMenu.SelectedItem != null)
             {
-                txtDisplay.Text = btn.Text;
-                isNewNumber = false;
-            }
-            else
-            {
-                txtDisplay.Text += btn.Text;
+                lstSelected.Items.Add(lstMenu.SelectedItem);
+                TinhTongTien();
             }
         }
 
-        private void OperatorButton_Click(object sender, EventArgs e)
+        private void btnRemove_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            operand1 = double.Parse(txtDisplay.Text);
-            pendingOperation = btn.Text;
-            isNewNumber = true;
-        }
-
-        private void btnEquals_Click(object sender, EventArgs e)
-        {
-            double operand2 = double.Parse(txtDisplay.Text);
-            double result = 0;
-
-            switch (pendingOperation)
+            if (lstSelected.SelectedItem != null)
             {
-                case "+": result = operand1 + operand2; break;
-                case "-": result = operand1 - operand2; break;
-                case "*": result = operand1 * operand2; break;
-                case "/":
-                    if (operand2 != 0)
-                        result = operand1 / operand2;
-                    else
-                    {
-                        MessageBox.Show("Không thể chia cho 0!");
-                        return;
-                    }
-                    break;
+                lstSelected.Items.Remove(lstSelected.SelectedItem);
+                TinhTongTien();
             }
-
-            txtDisplay.Text = result.ToString();
-            isNewNumber = true;
-            pendingOperation = "";
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void TinhTongTien()
         {
-            txtDisplay.Text = "0";
-            operand1 = 0;
-            pendingOperation = "";
-            isNewNumber = true;
+            int total = 0;
+            foreach (var item in lstSelected.Items)
+            {
+                string str = item.ToString();
+                int price = int.Parse(str.Substring(str.LastIndexOf('-') + 1).Replace("k", "").Trim());
+                total += price * 1000;
+            }
+            lblTotal.Text = $"Tổng tiền: {total:N0} VNĐ";
         }
     }
 }
